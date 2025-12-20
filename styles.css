@@ -180,15 +180,56 @@ footer {
 }
 
 .background-animation span {
+  --tile-size: 48px; /* size of each tile */
   position: absolute;
-  bottom: -150px;
-  width: 2px;
-  height: 120px;
-  background: rgba(56, 175, 244, 0.40); /* darker but subtle */
-  animation: rise linear infinite;
-  border-radius: 2px;
+  width: var(--tile-size);
+  height: var(--tile-size);
+  pointer-events: none;
+
+  /* use the SVG shape as a single tile */
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  /* scattered animation: name + allow inline duration/delay to control timing */
+  animation-name: rise-scatter;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  border-radius: 6px; /* subtle rounding for non-rect shapes */
 }
 
+/* smaller tiles on narrow screens */
+@media (max-width: 600px) {
+  .background-animation span {
+    --tile-size: 32px;
+  }
+}
+
+/* ===== Shape variants (single-tile SVG backgrounds) ===== */
+.background-animation span.shape-square { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect width='48' height='48' fill='%2338AFF4' fill-opacity='0.45'/></svg>"); }
+.background-animation span.shape-circle { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><circle cx='24' cy='24' r='20' fill='%2338AFF4' fill-opacity='0.45'/></svg>"); }
+.background-animation span.shape-rect { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect x='6' y='12' width='36' height='24' rx='4' fill='%2338AFF4' fill-opacity='0.45'/></svg>"); }
+.background-animation span.shape-triangle { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><polygon points='24,6 42,42 6,42' fill='%2338AFF4' fill-opacity='0.45'/></svg>"); }
+.background-animation span.shape-diamond { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><polygon points='24,6 42,24 24,42 6,24' fill='%2338AFF4' fill-opacity='0.45'/></svg>"); }
+.background-animation span.shape-hexagon { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><polygon points='12,8 36,8 44,24 36,40 12,40 4,24' fill='%2338AFF4' fill-opacity='0.45'/></svg>"); }
+
+/* subtle/optional variant for higher contrast */
+.background-animation span.shape-outline { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect x='6' y='6' width='36' height='36' fill='none' stroke='%2338AFF4' stroke-opacity='0.45' stroke-width='4'/></svg>"); }
+
+/* Scattered rise animation (moves tile up, with optional horizontal drift via --drift) */
+@keyframes rise-scatter {
+  from {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  20% { opacity: 0.6; }
+  80% { opacity: 0.6; }
+  to {
+    transform: translateY(-140vh) translateX(var(--drift, 0px));
+    opacity: 0;
+  }
+}
 
 /* Animation */
 @keyframes rise {
