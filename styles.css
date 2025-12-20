@@ -160,13 +160,19 @@ footer {
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-.resume-actions a:hover {
+..resume-actions a:hover {
   background: var(--primary);
   color: white;
 }
-/* ================================
-   Subtle Background Line Animation
-   ================================ */
+
+/* Inline contact link icons */
+.contact-link svg {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 8px;
+  color: var(--primary);
+}
 
 .background-animation {
   position: fixed;
