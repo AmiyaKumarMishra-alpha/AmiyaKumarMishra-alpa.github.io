@@ -160,7 +160,7 @@ footer {
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-..resume-actions a:hover {
+.resume-actions a:hover {
   background: var(--primary);
   color: white;
 }
