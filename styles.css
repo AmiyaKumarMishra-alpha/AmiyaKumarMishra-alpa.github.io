@@ -267,3 +267,52 @@ footer {
   width: 100%;
   z-index: 50;
 }
+
+
+
+/* ===== Navbar Profile (FIXED SIZE) ===== */
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+/* ===== HARD CLAMP NAVBAR IMAGE (FINAL OVERRIDE) ===== */
+header nav img {
+  width: 32px !important;
+  height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+/* ===== Navbar Left Group ===== */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Avatar */
+.nav-left img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(56, 175, 244, 0.45);
+}
+
+/* Nav links wrapper */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+
